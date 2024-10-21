@@ -5,8 +5,8 @@ RSpec.describe FetchWeatherJob, type: :job do
 
   describe "#perform" do
     it "writes weather data to cache if geocoding and API calls are successful" do
-      allow(Geocoder).to receive(:search).and_return([ double(latitude: 42.8864, longitude: -85.5402) ])
-      allow_any_instance_of(WeatherService).to receive(:fetch_weather).and_return('main' => { 'temp' => 15.0 })
+      allow(Geocoder).to receive(:search).and_return([ double(latitude: 42.8864, longitude: -85.5402, city: 'Hudsonville', state: 'Michigan', data: { 'address' => { 'county' => 'Ottawa' } }) ])
+      allow_any_instance_of(WeatherService).to receive(:fetch_weather).and_return('main' => { 'temp' => 15.0 }, 'location' => { 'city' => 'Hudsonville', 'state' => 'Michigan' })
       allow_any_instance_of(WeatherService).to receive(:fetch_forecast).and_return('city' => { 'country' => 'US' }, 'list' => [])
 
       expect(Rails.cache).to receive(:write).with("weather_#{zipcode}", anything, expires_in: 30.minutes)
