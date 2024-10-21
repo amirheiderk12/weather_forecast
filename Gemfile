@@ -15,11 +15,13 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 # Background job processing
-gem 'sidekiq'
+gem "sidekiq"
 # For making HTTP requests
-gem 'faraday'
+gem "faraday"
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
+# For location validation
+gem "geocoder"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -39,12 +41,13 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-
+  # rspec
+  gem "rspec-rails"
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  # For environment variable management
-gem 'dotenv-rails'
+# For environment variable management
+gem "dotenv-rails"
 end
 
 group :development do
@@ -56,4 +59,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "rails-controller-testing"
+  gem "webmock", require: false
 end
