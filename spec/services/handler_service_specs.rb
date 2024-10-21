@@ -4,7 +4,7 @@ RSpec.describe HandlerService do
   let(:zipcode) { "12345" }
   let(:handler) { HandlerService.new(zipcode) }
   let(:cache_key) { "weather_#{zipcode}" }
-  let(:weather_data) { { "main" => { "temp" => 15.0 }, "weather" => [{ "description" => "clear sky" }] } }
+  let(:weather_data) { { "main" => { "temp" => 15.0 }, "weather" => [ { "description" => "clear sky" } ] } }
 
   describe "#process" do
     context "with valid ZIP code" do

@@ -5,7 +5,7 @@ RSpec.describe WeatherController, type: :controller do
     let(:zipcode) { "12345" }
     let(:invalid_zipcode) { "invalid" }
     let(:cache_key) { "weather_#{zipcode}" }
-    let(:weather_data) { { "main" => { "temp" => 15.0 }, "weather" => [{ "description" => "clear sky" }] } }
+    let(:weather_data) { { "main" => { "temp" => 15.0 }, "weather" => [ { "description" => "clear sky" } ] } }
 
     before do
       allow(Rails.cache).to receive(:read).with(cache_key).and_return(nil)

@@ -25,7 +25,7 @@ RSpec.describe WeatherService do
 
   describe "#fetch_forecast" do
     it "returns forecast data from API" do
-      response = { 'list' => [{ 'dt_txt' => '2024-10-22 12:00:00', 'main' => { 'temp' => 10.0 }, 'weather' => [{ 'description' => 'clear sky' }] }] }.to_json
+      response = { 'list' => [ { 'dt_txt' => '2024-10-22 12:00:00', 'main' => { 'temp' => 10.0 }, 'weather' => [ { 'description' => 'clear sky' } ] } ] }.to_json
       stub_request(:get, /api.openweathermap.org/).to_return(status: 200, body: response)
 
       result = service.fetch_forecast
