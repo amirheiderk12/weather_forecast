@@ -1,6 +1,8 @@
-
 class FetchWeatherJob < ApplicationJob
   queue_as :default
+  class JobNotUnique < StandardError; end
+
+  unique :until_executed, on_conflict: ->(job) { raise JobNotUnique, job }
 
   retry_on StandardError, wait: 5.seconds, attempts: 3
 
@@ -13,6 +15,11 @@ class FetchWeatherJob < ApplicationJob
 
       if weather_data && forecast_data
         weather_data["forecast"] = filter_forecast_for_usa(forecast_data)
+        weather_data["location"] = {
+          city: location_data[:city],
+          county: location_data[:county],
+          state: location_data[:state]
+        }
         cache_key = "weather_#{zipcode}"
         Rails.cache.write(cache_key, weather_data, expires_in: 30.minutes)
       end
@@ -26,7 +33,13 @@ class FetchWeatherJob < ApplicationJob
   def geocode_zipcode(zipcode)
     results = Geocoder.search(zipcode.to_s, params: { countrycodes: "us" })
     if results.any?
-      { lat: results.first.latitude, lon: results.first.longitude }
+      {
+        lat: results.first.latitude,
+        lon: results.first.longitude,
+        city: results.first.data.dig("address", "city") || results.first.data.dig("address", "town"),
+        county: results.first.data.dig("address", "county"),
+        state: results.first.data.dig("address", "state")
+      }
     else
       nil
     end
