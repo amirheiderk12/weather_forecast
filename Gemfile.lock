@@ -48,6 +48,9 @@ GEM
     activejob (7.2.1.1)
       activesupport (= 7.2.1.1)
       globalid (>= 0.3.6)
+    activejob-uniqueness (0.3.2)
+      activejob (>= 4.2, < 7.3)
+      redlock (>= 2.0, < 3)
     activemodel (7.2.1.1)
       activesupport (= 7.2.1.1)
     activerecord (7.2.1.1)
@@ -233,6 +236,8 @@ GEM
       redis-client (>= 0.22.0)
     redis-client (0.22.2)
       connection_pool
+    redlock (2.0.6)
+      redis-client (>= 0.14.1, < 1.0.0)
     regexp_parser (2.9.2)
     reline (0.5.10)
       io-console (~> 0.5)
@@ -344,6 +349,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activejob-uniqueness
   bootsnap
   brakeman
   capybara
