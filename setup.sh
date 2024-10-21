@@ -56,12 +56,26 @@ function install_redis {
   fi
 }
 
+function install_rails {
+  if ! gem list -i '^rails$' &> /dev/null
+  then
+    echo "Rails not found. Installing Rails..."
+    gem install rails
+  else
+    echo "Rails is already installed."
+  fi
+}
+
 echo "Setting up your development environment..."
 
 check_homebrew
-brew update
+brew update --auto-update
 install_rbenv
 install_ruby
 install_redis
+install_rails
 
 echo "Setup complete. Your environment is ready with Ruby $(ruby -v) and Redis running!"
+
+echo "Installing Gems..."
+bundle install
