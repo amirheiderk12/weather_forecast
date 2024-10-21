@@ -1,3 +1,6 @@
+# Note
+1. This project uses `rbenv` to setup ruby on your system
+
 # Automatic Setup Guide
 Make script executable and run:
 ```bash
