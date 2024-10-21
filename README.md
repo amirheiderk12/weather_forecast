@@ -39,15 +39,11 @@ Homebrew is a package manager for macOS that simplifies installing and managing 
 If Homebrew is not installed, proceed with the following steps.
 
 Install Homebrew by running:
-    ```bash
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    ```
+  `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 After installation, add Homebrew to your environment:
-    ```bash
-      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    ```bash
+  `echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile`
+  `eval "$(/opt/homebrew/bin/brew shellenv)"`
 
 ##  Step 2: Install rbenv and Ruby
 1.  Install rbenv:
