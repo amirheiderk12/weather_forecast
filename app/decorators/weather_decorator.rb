@@ -16,14 +16,22 @@ class WeatherDecorator
 
   def display_forecast
     return unless @weather_data["forecast"]
-    forecast_list = @weather_data["forecast"]["list"].first(5)
-    forecast_list.map do |forecast|
-      "<div class='forecast-card' style='display: inline-block; margin: 10px; padding: 15px; background-color: #f0f0f0; border-radius: 8px; width: 150px; text-align: center;'>
-         <h4>#{forecast['dt_txt'].to_date.strftime('%A')}</h4>
-         <p>#{forecast['dt_txt'].to_date.strftime('%b %d, %Y')}</p>
-         <p>Temp: #{forecast['main']['temp']}°C</p>
-         <p>#{forecast['weather'][0]['description'].capitalize}</p>
-       </div>"
+
+    grouped_forecast = @weather_data["forecast"]["list"].group_by { |forecast| forecast["dt_txt"].to_date }
+
+    grouped_forecast.map do |date, forecasts|
+      daily_cards = forecasts.map do |forecast|
+        "<div class='forecast-card' style='display: inline-block; margin: 5px; padding: 10px; background-color: #f0f0f0; border-radius: 8px; width: 130px; text-align: center;'>
+          <p>Time: #{forecast['dt_txt'].to_time.strftime('%l:%M %p')}</p>
+          <p>Temp: #{forecast['main']['temp']}°C</p>
+          <p>#{forecast['weather'][0]['description'].capitalize}</p>
+        </div>"
+      end.join
+
+      "<div class='daily-forecast' style='margin-bottom: 20px;'>
+        <h4>#{date.strftime('%A, %b %d, %Y')}</h4>
+        #{daily_cards}
+      </div>"
     end.join.html_safe
   end
 end
