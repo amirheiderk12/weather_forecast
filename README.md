@@ -4,7 +4,16 @@ Make script executable and run:
   chmod +x setup.sh
   ./setup.sh
 ```
+# To Run
+1. Add Your Open Weather `API_KEY` to the .env file
+   https://home.openweathermap.org/api_keys
 
+2. Start Server and Sidekiq (separate terminals)
+   ```bash
+    rails s
+    bundle exec sidekiq
+    ```
+3. Run `rspec` to run the test suite
 
 # Manual Setup Guide
 
