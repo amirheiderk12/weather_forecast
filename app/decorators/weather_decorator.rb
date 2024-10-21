@@ -5,7 +5,8 @@ class WeatherDecorator
 
   def display_weather
     "<div class='current-weather' style='padding: 15px; background-color: #e0f7fa; border-radius: 8px; text-align: center; margin-bottom: 20px;'>
-       <h3>Current Weather</h3>
+       <h3>Current Weather for #{@weather_data['location']['city'] || @weather_data['name']}, #{@weather_data['location'][:state]}</h3>
+       <p><strong>County:</strong> #{@weather_data['location'][:county]}</p>
        <p><strong>Temperature:</strong> #{@weather_data['main']['temp']}°C</p>
        <p><strong>High:</strong> #{@weather_data['main']['temp_max']}°C</p>
        <p><strong>Low:</strong> #{@weather_data['main']['temp_min']}°C</p>
