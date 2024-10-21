@@ -8,6 +8,7 @@ Make script executable and run:
   ./setup.sh
 ```
 # To Run
+
 1. Add Your Open Weather `API_KEY` to the .env file
    https://home.openweathermap.org/api_keys
 
@@ -74,3 +75,15 @@ Install Redis via Homebrew:
 ```
 
 You should get a response saying PONG if Redis is running correctly.
+
+##  Step 4: Install Rails and Gems
+
+1.  Install rails:
+    ```bash
+      gem install rails
+    ```
+
+2.  Install gems:
+    ```bash
+      bundle install
+    ```
